@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import HomePage from './Pages/HomePage';
+import {
+  BrowserRouter,
+  Routes, //replaces "Switch" used till v5
+  Route,
+} from "react-router-dom";
+import AdminPage from './Pages/AdminPage';
+import PostView from './Components/PostView';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HomePage/>}/>
+          <Route path='/admin_panel' element={<AdminPage/>}/>
+          <Route path='/post_test_view' element={<PostView/>}/>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

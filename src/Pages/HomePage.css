@@ -1,0 +1,6 @@
+.stick-svg {
+    display: block;
+    @media (max-width:752px) {
+        display: none;
+    }
+}
