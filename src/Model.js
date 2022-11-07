@@ -1,5 +1,3 @@
-
-
 export class GalleryCardModel {
     constructor(title,description,image,uid,date) {
         this.title = title;

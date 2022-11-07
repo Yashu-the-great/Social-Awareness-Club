@@ -1,30 +1,29 @@
-import styled from "styled-components"
-import css from "./HomePage.css"
-import PlantSmallSvg from "../Assets/HeroSectionSvgs/PlantSmall1.svg"
-import Stick from "../Assets/HeroSectionSvgs/Stick.svg"
-import PlantBigSvg from "../Assets/HeroSectionSvgs/PlantBigSvg.svg"
-import Clothes from "../Assets/HeroSectionSvgs/Clothes.svg"
-import AboutUs from "../Components/AboutSection"
-import GallerySection from "../Components/GallerSection"
+import styled from 'styled-components';
+import plantSmall from '../../Assets/plantSmall.svg';
+import stick from '../../Assets/stick.svg';
+import plantBigSvg from '../../Assets/plantBig.svg';
+import clothes from '../../Assets/clothes.svg';
+import About from '../../Components/About/About';
+import Gallery from '../../Components/Gallery/Gallery';
+import './Home.css';
 
-
-export default function HomePage() {
+export default function Home() {
     return (
-        <Wrapper style={css}>
+        <Wrapper>
             <TopSvgs>
-                <Svgs src={PlantSmallSvg} />
-                <StickSvg src={Stick} className="stick-svg" />
+                <Svgs src={plantSmall} />
+                <StickSvg src={stick} className='stick-svg' />
             </TopSvgs>
             <Text>
                 <Title>Social Awareness Club</Title>
                 <SubTitle>Spreading Awarness, Locally and Globally</SubTitle>
             </Text>
             <TopSvgs>
-                <PlantBigSvgs src={PlantBigSvg} />
-                <PlantBigSvgs src={Clothes} />
+                <PlantBigSvgs src={plantBigSvg} />
+                <PlantBigSvgs src={clothes} />
             </TopSvgs>
-            <AboutUs />
-            <GallerySection/>
+            <About />
+            <Gallery/>
         </Wrapper>
     );
 }
@@ -84,13 +83,13 @@ const Svgs = styled.img`
 const StickSvg = styled.img`
     width: 137px;
     @media (max-width:752px){
-        display: none ;
+        display: none;
     }
 `
 
 const PlantBigSvgs = styled.img`
     width: 210px;
     @media (max-width:752px){
-        display: none ;
+        display: none;
     }
 `
