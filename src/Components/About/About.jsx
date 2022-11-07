@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import thisIsUs from '../../Assets/thisIsUs.svg'
 import groupPic from '../../Assets/groupPic.png'
 export default function AboutUs() {
-    return(
+    return (
         <Wrapper>
             <Text>
                 <Title>About Us</Title>

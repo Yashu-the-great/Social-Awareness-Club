@@ -23,7 +23,7 @@ export default function Home() {
                 <PlantBigSvgs src={clothes} />
             </TopSvgs>
             <About />
-            <Gallery/>
+            <Gallery />
         </Wrapper>
     );
 }
