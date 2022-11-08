@@ -1,53 +1,52 @@
-import styled from "styled-components";
-import { useState } from "react";
-import { checkCookies, logout, SignIn } from "../Backend/SupaBaseFunctions";
-import { Pane, FileUploader, FileCard } from 'evergreen-ui'
-import React from "react";
+import styled from 'styled-components';
+import { useState, useCallback } from 'react';
+import { checkCookies, logout, SignIn } from '../../supabase';
+import { Pane, FileUploader, FileCard } from 'evergreen-ui';
+
 export default function AdminPage() {
-    const [title, titleChange] = useState('')
-    const [content, contentChange] = useState('')
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("logged_in") === "true" ? true : false)
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('logged_in') === 'true' ? true : false)
     const [username, setUsername] = useState('')
-    const [login_password, setPassword] = useState('')
-    const [files, setFiles] = React.useState([])
-    const [fileRejections, setFileRejections] = React.useState([])
-    const handleFileChange = React.useCallback((files) => setFiles([files[0]]), [])
-    const handleRejected = React.useCallback((fileRejections) => setFileRejections([fileRejections[0]]), [])
-    const handleRemove = React.useCallback(() => {
+    const [password, setPassword] = useState('')
+    const [files, setFiles] = useState([])
+    const [fileRejections, setFileRejections] = useState([])
+    const handleFileChange = useCallback((files) => setFiles([files[0]]), [])
+    const handleRejected = useCallback((fileRejections) => setFileRejections([fileRejections[0]]), [])
+    const handleRemove = useCallback(() => {
         setFiles([])
         setFileRejections([])
     }, [])
-    const handleChange = event => {
-
+    const handleChange = (event) => {
         if ((title.length) === 0 || content.length === 0) {
-            document.getElementById("alert-title").style = "display:block;"
+            document.getElementById('alert-title').style = 'display:block;'
         } else {
             console.log('value is: ', title);
             console.log('value is: ', content);
-            document.getElementById("alert-title").style = "display:none;"
+            document.getElementById('alert-title').style = 'display:none;'
         }
     };
 
-    const handleLogin = async event => {
-        if ((username.length) === 0 || (login_password.length) === 0) {
-            document.getElementById("login-alert-title").style = "display:block;"
+    const handleLogin = async (event) => {
+        if ((username.length) === 0 || (password.length) === 0) {
+            document.getElementById('login-alert-title').style = 'display:block;'
             setIsLoggedIn(false)
-        } else if (checkCookies({ username, login_password })) {
+        } else if (checkCookies({ username, password })) {
             setIsLoggedIn(true);
-            document.getElementById("login-alert-title").style = "display:none;"
+            document.getElementById('login-alert-title').style = 'display:none;'
         }
-        else if ((await SignIn({ email: username, password: login_password })) === false) {
+        else if ((await SignIn({ email: username, password: password })) === false) {
             setIsLoggedIn(false);
-            document.getElementById("login-alert-title").style = "display:block;"
+            document.getElementById('login-alert-title').style = 'display:block;'
         } else {
             setIsLoggedIn(true);
-            localStorage.setItem("logged_in", true)
-            document.getElementById("login-alert-title").style = "display:none;"
+            localStorage.setItem('logged_in', true)
+            document.getElementById('login-alert-title').style = 'display:none;'
         }
     }
 
-    const handleLogout = async event => {
-        localStorage.setItem("logged_in", false);
+    const handleLogout = async (event) => {
+        localStorage.setItem('logged_in', false);
         (await logout());
         setIsLoggedIn(false);
     }
@@ -58,21 +57,21 @@ export default function AdminPage() {
                 <Text>
                     <Title>Admin Panel</Title>
                 </Text>
-                <AlertTitle id="alert-title">Please Fill Everything in the form.</AlertTitle>
+                <AlertTitle id='alert-title'>Please Fill Everything in the form.</AlertTitle>
 
                 <InputBox>
                     <SubTitle>Title</SubTitle>
-                    <FieldView type="text" placeholder="Title" onChange={event => { titleChange(event.target.value) }} />
+                    <FieldView type='text' placeholder='Title' onChange={event => { setTitle(event.target.value) }} />
                 </InputBox>
                 <InputBox>
                     <SubTitle>Content</SubTitle>
-                    <TextFieldView rows={15} placeholder="Approximately 250 to 300 words recommended." onChange={event => { contentChange(event.target.value) }} />
+                    <TextFieldView rows={15} placeholder='Approximately 250 to 300 words recommended.' onChange={event => { setContent(event.target.value) }} />
                 </InputBox>
                 <InputBox>
                     <SubTitle>Image</SubTitle>
                     <Pane maxWidth={654}>
                         <FileUploader
-                            description="You can upload 1 Image.The image can be up to 50 MB."
+                            description='You can upload 1 Image.The image can be up to 50 MB.'
                             maxSizeInBytes={50 * 1024 ** 2}
                             maxFiles={1}
                             onChange={handleFileChange}
@@ -98,7 +97,7 @@ export default function AdminPage() {
                     </Pane>
                 </InputBox>
                 <SubmitButton onClick={() => handleChange()}>Submit Content</SubmitButton>
-                <LogoutButton id="logout-button" onClick={() => handleLogout()}>Logout</LogoutButton>
+                <LogoutButton id='logout-button' onClick={() => handleLogout()}>Logout</LogoutButton>
             </Wrapper>
         )
     } else {
@@ -107,17 +106,17 @@ export default function AdminPage() {
                 <Text>
                     <Title>Login</Title>
                 </Text>
-                <AlertTitle id="login-alert-title">Login Failed. Wrong Password or Username</AlertTitle>
+                <AlertTitle id='login-alert-title'>Login Failed. Wrong Password or Username</AlertTitle>
                 <InputBox>
                     <SubTitle>Email</SubTitle>
-                    <UsernameFieldView type="text" placeholder="Email" onChange={event => { setUsername(event.target.value) }} />
+                    <UsernameFieldView type='text' placeholder='Email' onChange={event => { setUsername(event.target.value) }} />
                 </InputBox>
                 <InputBox>
                     <SubTitle>Password</SubTitle>
-                    <FieldView type="password" placeholder="Password" onChange={event => { setPassword(event.target.value) }} />
+                    <FieldView type='password' placeholder='Password' onChange={event => { setPassword(event.target.value) }} />
                 </InputBox>
 
-                <SubmitButton id="login-submit-button" onClick={() => handleLogin()}>Login</SubmitButton>
+                <SubmitButton id='login-submit-button' onClick={() => handleLogin()}>Login</SubmitButton>
             </Wrapper>
         )
     };

@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import This_is_us from "../Assets/HeroSectionSvgs/This_is_us_svg.svg"
-import GrpPic from "../Assets/HeroSectionSvgs/grp_pic.png"
+import styled from 'styled-components';
+import thisIsUs from '../../Assets/thisIsUs.svg'
+import groupPic from '../../Assets/groupPic.png'
 export default function AboutUs() {
-    return(
+    return (
         <Wrapper>
             <Text>
                 <Title>About Us</Title>
@@ -10,8 +10,8 @@ export default function AboutUs() {
             </Text>
 
             <GroupPic>
-                <TisUs src={This_is_us} />
-                <Grp_pic src={GrpPic} />
+                <TisUs src={thisIsUs} />
+                <Grp_pic src={groupPic} />
             </GroupPic>
         </Wrapper>
     );
