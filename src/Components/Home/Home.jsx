@@ -9,7 +9,7 @@ import './Home.css';
 
 export default function Home() {
     return (
-        <Wrapper>
+        <Wrapper name='home' id='home'>
             <TopSvgs>
                 <Svgs src={plantSmall} />
                 <StickSvg src={stick} className='stick-svg' />

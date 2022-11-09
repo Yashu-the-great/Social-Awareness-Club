@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Text, Link as NextLink } from '@nextui-org/react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import groupPic from '../../Assets/groupPic.png';
 
 import Markdown from 'react-markdown';
 
 export default function Post(props) {
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    const navigate = useNavigate();
 
     const content = `*Lorem* ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique senectus et netus et. Imperdiet proin fermentum leo vel orci porta. Vestibulum sed arcu non odio euismod. Neque gravida in fermentum et sollicitudin. Sed tempus urna et pharetra pharetra massa massa. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Erat imperdiet sed euismod nisi porta lorem. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Tellus cras adipiscing enim eu turpis egestas pretium.
                         Eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim. Nunc id cursus metus aliquam eleifend mi in nulla. Diam maecenas sed enim ut sem viverra. Lobortis mattis aliquam faucibus purus in massa tempor. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Sed euismod nisi porta lorem mollis aliquam. Viverra orci sagittis eu volutpat odio facilisis mauris sit amet. Sit amet nisl purus in mollis nunc sed id. Feugiat vivamus at augue eget. Dolor sit amet consectetur adipiscing elit.
@@ -19,7 +22,7 @@ export default function Post(props) {
 
     return (
         <Wrapper>
-            <NextLink as={Link} to={-1} style={{
+            <NextLink onPress={() => navigate(-1)} style={{
                 marginTop: '-8vh'
             }}>← Go Back</NextLink>
 
