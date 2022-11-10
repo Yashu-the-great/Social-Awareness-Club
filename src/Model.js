@@ -1,9 +1,9 @@
 export class GalleryCardModel {
-    constructor(title, description, image, uid, date) {
+    constructor(title, description, image, id, date) {
         this.title = title;
         this.description = description;
         this.image = image;
-        this.uid = uid;
+        this.id = id;
         this.date = date;
     }
 }
