@@ -16,7 +16,7 @@ export default function AdminPage({ session }) {
                     <Collapse title="New Post">
                         <NewPost />
                     </Collapse>
-                    <Collapse title="Edit Posts">
+                    <Collapse title="Manage Posts">
                         <ManagePosts />
                     </Collapse>
                 </Collapse.Group>
