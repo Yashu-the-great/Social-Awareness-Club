@@ -4,13 +4,13 @@ import Card from './Card';
 import GrpPic from '../../Assets/groupPic.png'
 import { GalleryCardModel } from '../../Model';
 
-export default function Gallery() {
-    const posts = [
-        new GalleryCardModel('Title1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum varius sit amet mattis vulputate. Mattis enim ut tellus elementum sagittis vitae et leo duis. Id venenatis a condimentum vitae. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Morbi tincidunt augue interdum velit euismod. Lectus vestibulum mattis ullamcorper velit sed. Proin fermentum leo vel orci porta non. Consequat mauris nunc congue nisi vitae suscipit tellus mauris a. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi. Ac turpis egestas maecenas pharetra convallis. Risus nec feugiat in fermentum posuere urna nec. Pellentesque dignissim enim sit amet venenatis urna cursus eget. Varius sit amet mattis vulputate enim. Quam quisque id diam vel quam. Blandit cursus risus at ultrices mi tempus imperdiet.', GrpPic, 1, 'something'),
-        new GalleryCardModel('Title1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum varius sit amet mattis vulputate. Mattis enim ut tellus elementum sagittis vitae et leo duis. Id venenatis a condimentum vitae. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Morbi tincidunt augue interdum velit euismod. Lectus vestibulum mattis ullamcorper velit sed. Proin fermentum leo vel orci porta non. Consequat mauris nunc congue nisi vitae suscipit tellus mauris a. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi. Ac turpis egestas maecenas pharetra convallis. Risus nec feugiat in fermentum posuere urna nec. Pellentesque dignissim enim sit amet venenatis urna cursus eget. Varius sit amet mattis vulputate enim. Quam quisque id diam vel quam. Blandit cursus risus at ultrices mi tempus imperdiet.', GrpPic, 1, 'something'),
-        new GalleryCardModel('Titl', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum varius sit amet mattis vulputate. Mattis enim ut tellus elementum sagittis vitae et leo duis. Id venenatis a condimentum vitae. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Morbi tincidunt augue interdum velit euismod. Lectus vestibulum mattis ullamcorper velit sed. Proin fermentum leo vel orci porta non. Consequat mauris nunc congue nisi vitae suscipit tellus mauris a. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi. Ac turpis egestas maecenas pharetra convallis. Risus nec feugiat in fermentum posuere urna nec. Pellentesque dignissim enim sit amet venenatis urna cursus eget. Varius sit amet mattis vulputate enim. Quam quisque id diam vel quam. Blandit cursus risus at ultrices mi tempus imperdiet.', GrpPic, 1, 'something'),
-        new GalleryCardModel('Title1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum varius sit amet mattis vulputate. Mattis enim ut tellus elementum sagittis vitae et leo duis. Id venenatis a condimentum vitae. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Gravida in fermentum et sollicitudin ac orci phasellus egestas. Morbi tincidunt augue interdum velit euismod. Lectus vestibulum mattis ullamcorper velit sed. Proin fermentum leo vel orci porta non. Consequat mauris nunc congue nisi vitae suscipit tellus mauris a. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi. Ac turpis egestas maecenas pharetra convallis. Risus nec feugiat in fermentum posuere urna nec. Pellentesque dignissim enim sit amet venenatis urna cursus eget. Varius sit amet mattis vulputate enim. Quam quisque id diam vel quam. Blandit cursus risus at ultrices mi tempus imperdiet.', GrpPic, 1, 'something'),
-    ]
+export default function Gallery({ posts }) {
+    posts = posts.map((post) => new GalleryCardModel(post.title, post.content, post.image, post.id, post.created_at));
+
+    if (posts.length == 0) posts.push(
+        new GalleryCardModel('', '', null, 1, ''),
+        new GalleryCardModel('', '', null, 1, ''),
+    );
 
     return (
         <Wrapper id='posts' name='posts'>
@@ -21,7 +21,7 @@ export default function Gallery() {
             <CardView>
                 {
                     posts.map((val, index) => {
-                        return <Card image={val.image} title={val.title} key={index} />
+                        return <Card id={val.id} image={val.image} title={val.title} key={index} />
                     })
                 }
             </CardView>
